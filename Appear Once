@@ -1,0 +1,42 @@
+function runProgram(input) {
+  var ni = input.split("\n");
+  var N = +ni[0];
+  var arr = ni[1].split(" ").map(Number);
+  var dic ={};
+  for(let i=0; i<N; i++){
+    if(arr[i] in dic){
+      dic[arr[i]]+=1;
+    }
+    else{
+      dic[arr[i]]=1;
+    }
+  }
+  var summ=0;
+  for(let key in dic){
+    if(dic[key] == 1){
+      summ+= parseInt(key);
+    }
+  }
+  console.log(summ);
+  
+}
+if (process.env.USER === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
