@@ -1,0 +1,46 @@
+function cornerColumn(arr, N, M) {
+  var summ = 0;
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < M; j++) {
+      if (j == 0 || j == M - 1) {
+        summ += arr[i][j];
+        // console.log(arr[i][j]);
+      }
+    }
+  }
+  console.log(summ);
+}
+
+function runProgram(input) {
+  var newInput = input.trim().split("\n");
+  var [N, M] = newInput[0].split(" ").map(Number);
+  var arr = [];
+  var lines = 1;
+  for (let i = 0; i < N; i++) {
+    var temp = newInput[lines].split(" ").map(Number);
+    arr.push(temp);
+    lines++;
+  }
+  cornerColumn(arr, N, M);
+}
+if (process.env.USER === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    // runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
